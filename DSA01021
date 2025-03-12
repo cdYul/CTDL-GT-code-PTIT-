@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string>
+#include <string>
+#include <set>
+using namespace std;
+int n, a[1001], b[1001], k, ok;
+int ans;
+void sinh()
+{
+    int i = k;
+    while (i >= 1 and a[i] == n - k + i)
+    {
+        i--;
+    }
+    if (i == 0)
+        ok = 0;
+    else
+    {
+        a[i]++;
+        for (int j = i + 1; j <= k; j++)
+        {
+            a[j] = a[j - 1] + 1;
+        }
+    }
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        ans = 0;
+        cin >> n >> k;
+        ok = 1;
+        set<int> se;
+        for (int i = 1; i <= k; i++)
+        {
+            cin >> a[i];
+            se.insert(a[i]);
+        }
+        sinh();
+        if (!ok)
+            cout << k << endl;
+        else
+        {
+            for (int i = 1; i <= k; i++)
+            {
+                if (se.count(a[i]) == 0)
+                {
+                    ans++;
+                }
+            }
+            cout << ans << endl;
+        }
+    }
+}
