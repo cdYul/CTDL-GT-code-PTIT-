@@ -1,0 +1,53 @@
+#include <iostream>
+#include <algorithm>
+#include <math.h>
+#include <string>
+#include <vector>
+#include <set>
+using namespace std;
+// ma Gray:
+// Thuat toan chuyen ma nhai phan sang ma gray :
+// bit dau tien cua mau Gray va ma nhi phan giong nhau
+// cac bit con lai o vi tri i cua ma gray co duoc bang cach XOR 2 bit thu i va i - 1 cua xau nhi phan
+int n, a[1001], ok;
+void khoitao()
+{
+    for (int i = 1; i <= n; i++)
+        a[i] = 0;
+}
+void sinh()
+{
+    int i = n;
+    while (i >= 1 and a[i] == 1)
+    {
+        a[i] = 0;
+        i--;
+    }
+    if (i == 0)
+        ok = 0;
+    else
+        a[i] = 1;
+}
+int main()
+{
+    int t; cin >> t;
+    while(t--){
+    cin >> n;
+    ok = 1;
+    khoitao();
+    while (ok)
+    {
+        cout << a[1];
+        for (int i = 2; i <= n; i++)
+        {
+            if (abs(a[i] - a[i - 1]) == 1)
+                cout << "1";
+            else
+                cout << "0";
+        }
+        cout << ' ';
+        sinh();
+    }
+    cout << endl;
+    }
+}
