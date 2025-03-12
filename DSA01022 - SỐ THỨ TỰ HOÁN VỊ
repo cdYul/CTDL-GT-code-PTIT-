@@ -1,0 +1,74 @@
+#include <iostream>
+#include <string>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
+int n, a[1001], ok;
+
+void Khoitao()
+{
+    for (int i = 1; i <= n; i++)
+        a[i] = i;
+}
+
+void sinh()
+{
+    int i = n - 1;
+    while (i >= 1 && a[i] > a[i + 1])
+    {
+        i--;
+    }
+    if (i == 0)
+    {
+        ok = 0;
+    }
+    else
+    {
+        int j = n;
+        while (a[i] > a[j])
+        {
+            j--;
+        }
+        swap(a[i], a[j]);
+        reverse(a + i + 1, a + n + 1);
+    }
+}
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        map<string, int> mp;
+        ok = 1;
+        int h = 1;
+        cin >> n;
+        Khoitao();
+
+        while (ok)
+        {
+            string s = "";
+            for (int i = 1; i <= n; i++)
+            {
+                s += to_string(a[i]);
+            }
+            mp[s] = h;
+            h++;
+            sinh();
+        }
+
+        string tmp = "";
+        for (int i = 1; i <= n; i++)
+        {
+            int x;
+            cin >> x;
+            tmp += to_string(x);
+        }
+
+        cout << mp[tmp] << endl;
+    }
+    return 0;
+}
