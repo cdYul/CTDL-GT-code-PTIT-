@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+#include <string>
+using namespace std;
+int a[101], ok;
+string s;
+void sinh()
+{
+    int i = s.size() - 1;
+    while (i >= 0 and s[i] == '0')
+    {
+        s[i] = '1';
+        i--;
+    }
+    if (i < 0)
+        ok = 0;
+    else
+        s[i] = '0';
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        ok = 1;
+        cin >> s;
+        sinh();
+        if (!ok)
+            for (int i = 0; i < s.size(); i++)
+                cout << "1";
+        else
+            cout << s;
+        cout << endl;
+    }
+}
