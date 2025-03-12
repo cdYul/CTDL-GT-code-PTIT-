@@ -1,0 +1,70 @@
+#include <iostream>
+#include <string>
+#include <map>
+#include <algorithm>
+#include <set>
+#include <fstream>
+#include <sstream>
+#include <math.h>
+using namespace std;
+int n, a[101], ok, dem;
+void Khoitao()
+{
+    dem = 1;
+    a[1] = n;
+}
+void sinh()
+{
+    int i = dem;
+    while (i >= 1 and a[i] == 1)
+    {
+        i--;
+    }
+    if (i == 0)
+        ok = 0;
+    else
+    {
+        a[i]--;
+        int d = dem - i + 1;
+        dem = i;
+        int p = d / a[i];
+        int q = d % a[i];
+        if (p)
+        {
+            for (int j = 1; j <= p; j++)
+            {
+                dem++;
+                a[dem] = a[i];
+            }
+        }
+        if (q)
+        {
+            dem++;
+            a[dem] = q;
+        }
+    }
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        cin >> n;
+        Khoitao();
+        ok = 1;
+        while (ok)
+        {
+            cout << "(";
+            for (int i = 1; i <= dem; i++)
+            {
+                if (i != dem)
+                    cout << a[i] << ' ';
+                else
+                    cout << a[i] << ") ";
+            }
+            sinh();
+        }
+        cout << endl;
+    }
+}
