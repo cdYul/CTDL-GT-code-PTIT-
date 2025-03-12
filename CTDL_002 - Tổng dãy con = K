@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+int n, a[101], ok, k;
+void khoitao(){
+    for(int i = 1; i <= n; i++) a[i] = 0;
+}
+void sinh(){
+    int y = n;
+    while(y >= 1 && a[y] == 1){
+        a[y] = 0;
+        y--;
+    }
+    if(y == 0) ok = 0;
+    else a[y] = 1;
+}
+int main(){
+    cin >> n >> k;
+    int b[n];
+    for(auto &x: b) cin >> x;
+    ok = 1;
+    khoitao();
+    int dem = 0;
+    while(ok){
+        int ans = 0;
+        for(int i = 1; i <= n; i++){
+            if(a[i] == 1) ans += b[i-1];
+        }
+        if(ans == k){
+            dem++;
+            for(int i = 1; i <= n; i++){
+                if(a[i] == 1) cout << b[i-1] <<' ';
+            }
+            cout << endl;
+        }
+        sinh();
+    }
+    cout << dem << endl;
+}
