@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+int n, ok, a[101];
+void Khoitao(){
+    for(int i = 1; i<= n; i++) a[i] =  0;
+}
+void Sinh(){
+    int y = n;
+    while(y >= 1 && a[y] ==  1){
+        a[y] = 0;
+        y--;
+    }
+    if(y == 0) ok = 0;
+    else a[y] =  1;
+}
+int main(){
+    cin >> n;
+    ok = 1;
+    Khoitao();
+    while(ok){
+        string p = "", q = "";
+        for(int i = 1; i <= n; i++){
+            p += to_string(a[i]);
+        }
+        q = p;
+        reverse(p.begin(), p.end());
+        if(q == p){
+            for(int i = 1; i <= n; i++){
+                cout << a[i] <<' ';
+        }
+        cout << endl;
+        }
+        Sinh();
+    }
+}
