@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+int n, a[1001], ok, k;
+void Khoitao()
+{
+    for (int i = 1; i <= k; i++)
+        a[i] = i;
+}
+void sinh()
+{
+    int i = k;
+    while (i >= 1 and a[i] == n - k + i)
+        i--;
+    if (i == 0)
+        ok = 0;
+    else
+    {
+        a[i]++;
+        for (int j = i + 1; j <= k; j++)
+            a[j] = a[j - 1] + 1;
+    }
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        map<string, int> mp;
+        ok = 1;
+        int h = 1;
+        cin >> n >> k;
+        Khoitao();
+        while (ok)
+        {
+            string s = "";
+            for (int i = 1; i <= k; i++)
+            {
+                s += to_string(a[i]);
+            }
+            mp[s] = h;
+            h++;
+            sinh();
+        }
+        string tmp = "";
+        for (int i = 1; i <= k; i++)
+        {
+            int x;
+            cin >> x;
+            tmp += to_string(x);
+        }
+        cout << mp[tmp] << endl;
+    }
+}
