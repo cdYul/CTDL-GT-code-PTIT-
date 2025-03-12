@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+#include <map>
+#include <algorithm>
+#include <set>
+#include <fstream>
+using namespace std;
+int n, ok;
+string s;
+void sinh()
+{
+    int i = n - 2;
+    while (i >= 0 and s[i] >= s[i + 1])
+    {
+        i--;
+    }
+    if (i < 0)
+        ok = 0;
+    else
+    {
+        int j = n - 1;
+        while (s[i] >= s[j])
+        {
+            j--;
+        }
+        swap(s[i], s[j]);
+        int l = i + 1, r = n - 1;
+        while (l < r)
+        {
+            swap(s[l], s[r]);
+            l++;
+            r--;
+        }
+    }
+}
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int e;
+        cin >> e >> s;
+        ok = 1;
+        n = s.size();
+        sinh();
+        if (!ok)
+            cout << e << ' ' << "BIGGEST" << endl;
+        else
+            cout << e << ' ' << s << endl;
+    }
+}
